@@ -42,6 +42,7 @@ function aServerTab.Create(tab)
     aServerTab.GameType = guiCreateLabel(0.03, 0.150, 0.40, 0.035, "Game Type: None", true, tab)
     aServerTab.MapName = guiCreateLabel(0.03, 0.195, 0.40, 0.035, "Map Name: None", true, tab)
     aServerTab.Players = guiCreateLabel(0.03, 0.240, 0.20, 0.035, "Players: 0/0", true, tab)
+    aServerTab.KickAllPlayers = guiCreateButton(0.42, 0.015, 0.18, 0.04, "Kick All", true, tab, "kickall")
     aServerTab.SetPassword = guiCreateButton(0.42, 0.060, 0.18, 0.04, "Set Password", true, tab, "setpassword")
     aServerTab.ResetPassword = guiCreateButton(0.42, 0.105, 0.18, 0.04, "Reset Password", true, tab, "setpassword")
     aServerTab.SetGameType = guiCreateButton(0.42, 0.150, 0.18, 0.04, "Set Game Type", true, tab, "setgame")
@@ -171,7 +172,11 @@ end
 
 function aServerTab.onClientClick(button)
     if (button == "left") then
-        if (source == aServerTab.SetGameType) then
+        if (source == aServerTab.KickAllPlayers) then
+            if (messageBox("Are you sure you want to kick all the players?", MB_QUESTION, MB_YESNO )) then
+                triggerServerEvent("aServer", getLocalPlayer(), "kickall")
+            end
+        elseif (source == aServerTab.SetGameType) then
             local gametype = inputBox("Game Type", "Enter game type:")
             if (gametype) then
                 triggerServerEvent("aServer", getLocalPlayer(), "setgame", gametype)

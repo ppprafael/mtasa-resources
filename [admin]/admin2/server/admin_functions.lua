@@ -365,6 +365,13 @@ aFunctions = {
         end
     },
     server = {
+        ["kickall"] = function()
+            for i, player in ipairs(getElementsByType("player")) do
+                if not ( player == source ) then
+                    kickPlayer ( player )
+                end
+            end	
+        end,
         ["setgame"] = function(game)
             if (not setGameType(tostring(game))) then
                 outputChatBox("Error setting game type.", source, 255, 0, 0)

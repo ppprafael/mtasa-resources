@@ -77,6 +77,7 @@
     <right name="command.setfpskicker" access="true" />
     <right name="command.setidlekicker" access="true" />
     <right name="command.clearchat" access="true" />
+    <right name="command.kickall" access="true" />
     <!--Bans related-->
     <right name="command.ban" access="true" />
     <right name="command.unban" access="true" />
